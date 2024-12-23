@@ -99,7 +99,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: |
         cd k8s
-        kustomize edit set image github-actions-argo-cd=$DOCKER_USERNAME/github-actions-argo-cd:${{ github.sha }}
+        kustomize edit set image dbatruh/github-actions-argo-cd=$DOCKER_USERNAME/github-actions-argo-cd:${{ github.sha }}
         cat kustomization.yaml
 
     - name: Commit updated Kubernetes files
