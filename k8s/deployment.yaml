@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-app
+  template:
+    metadata:
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - name: hello-container
+        image: dbatruh/github-actions-argo-cd:v1
+        ports:
+        - containerPort: 8050
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config.properties  
+          subPath: config.properties
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"         
+      volumes:
+      - name: config-volume
+        configMap:
+          name: hello-config
