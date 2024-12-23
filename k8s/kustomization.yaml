@@ -7,4 +7,4 @@ resources:
 images:
 - name: github-actions-argo-cd
   newName: dbatruh/github-actions-argo-cd
-  newTag: 38f81b8114e1f127e690a5ea1181fbe7dfc2d023
+  newTag: 2c3bf85c4ef125498e46c910f2efee1c737ef60b
