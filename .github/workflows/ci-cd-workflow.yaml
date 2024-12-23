@@ -70,7 +70,7 @@ jobs:
         file: ./app/Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/github-actions-argo-cd:$GITHUB_SHA
+        tags: ${{ secrets.DOCKER_USERNAME }}/github-actions-argo-cd:${{ github.sha }}
         platforms: linux/amd64,linux/arm64
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
@@ -99,7 +99,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run: |
         cd k8s
-        kustomize edit set image github-actions-argo-cd=$DOCKER_USERNAME/github-actions-argo-cd:$GITHUB_SHA
+        kustomize edit set image github-actions-argo-cd=$DOCKER_USERNAME/github-actions-argo-cd:${{ github.sha }}
         cat kustomization.yaml
 
     - name: Commit updated Kubernetes files
@@ -107,7 +107,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add k8s/*.yaml
-        git commit -m "Update resource files with new Docker tag '$GITHUB_SHA'"
+        git commit -m "Update resource files with new Docker tag '${{ github.sha }}'"
         
     - name: Push changes
       uses: ad-m/github-push-action@master
