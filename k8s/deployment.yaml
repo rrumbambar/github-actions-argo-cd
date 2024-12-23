@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-container
-        image: dbatruh/github-actions-argo-cd:v1
+        image: dbatruh/github-actions-argo-cd:v2
         ports:
         - containerPort: 8050
         volumeMounts:
