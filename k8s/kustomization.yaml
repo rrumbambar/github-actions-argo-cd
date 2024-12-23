@@ -6,4 +6,5 @@ resources:
 - config.yaml
 images:
 - name: dbatruh/github-actions-argo-cd
-  newTag: 2c3bf85c4ef125498e46c910f2efee1c737ef60b
+  newName: dbatruh/github-actions-argo-cd
+  newTag: 676155247a1cb14b62d7d658caeef72723ce47e4
